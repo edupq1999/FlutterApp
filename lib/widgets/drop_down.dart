@@ -1,8 +1,9 @@
 import 'package:chat_app/constants/constants.dart';
 import 'package:chat_app/models/models_model.dart';
-import 'package:chat_app/services/api_service.dart';
+import 'package:chat_app/providers/models_providers.dart';
 import 'package:chat_app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ModelsDrownDownWidget extends StatefulWidget {
   const ModelsDrownDownWidget({super.key});
@@ -12,11 +13,13 @@ class ModelsDrownDownWidget extends StatefulWidget {
 } 
 
 class _ModelsDrownDownWidget extends State<ModelsDrownDownWidget>{
-  String currentModel = "text-davinci-003";
+  String ?currentModel;
   @override
   Widget build(BuildContext context){
+    final modelsProvider = Provider.of<ModelsProvider>(context, listen: false);
+    currentModel = modelsProvider.getCurrentModel;
     return FutureBuilder<List<ModelsModel>>(
-      future: ApiService.getModels(),
+      future: modelsProvider.getAllModels(),
       builder: (context, snapshot){
         if (snapshot.hasError){
           return Center(child: TextWidget(label: snapshot.error.toString())
@@ -42,6 +45,7 @@ class _ModelsDrownDownWidget extends State<ModelsDrownDownWidget>{
               setState(() {
                 currentModel = value.toString();
               });
+              modelsProvider.setCurrentModel(value.toString(),);
             },
           ),
         );

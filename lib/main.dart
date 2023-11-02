@@ -15,7 +15,8 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ModelsProvider(),
+        ChangeNotifierProvider(
+          create: (_) => ModelsProvider(),
         ),
       ],
       child: MaterialApp(

@@ -1,11 +1,10 @@
 import 'package:chat_app/models/models_model.dart';
 import 'package:chat_app/services/api_service.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class ModelsProvider with ChangeNotifier{
-  
   String currentModel = "text-davinci-003";
-  String get getModelsList{
+  String get getCurrentModel{
     return currentModel;
   }
 
@@ -16,7 +15,7 @@ class ModelsProvider with ChangeNotifier{
 
   List<ModelsModel> modelsList = [];
 
-  List<ModelsModel> get getCurrentModel{
+  List<ModelsModel> get getModelList{
     return modelsList;
   }
 

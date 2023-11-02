@@ -17,7 +17,7 @@ class ApiService{
       //print("jsonResponse['error'] ${jsonResponse['error']["message"]}");
       throw HttpException(jsonResponse['error']['message']);
     }
-    //print("jsonResponse $jsonResponse");
+    print("jsonResponse $jsonResponse");
     List temp = [];
     for (var value in jsonResponse["data"]) {
       temp.add(value);
